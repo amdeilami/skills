@@ -7,29 +7,46 @@ load on demand. Each skill is a folder with a `SKILL.md`. New skills get added h
 
 | Skill | What it does |
 | --- | --- |
-| [`prompt-refinery`](./prompt-refinery/SKILL.md) | Rewrites a verbose or ambiguous prompt into a tighter, more accurate version — preserving all literal data verbatim and asking before guessing on blocking ambiguities. It refines the prompt; it never executes it. |
+| [`prompt-refinery`](./prompt-refinery/SKILL.md) | Turns a hastily typed, sloppy, or vague message into a clear prompt, then offers to run it. Fixes obvious typos in paths and names, but carries keys, hashes, and IDs through byte-for-byte, and asks before guessing on blocking ambiguities. Invoke it explicitly with `/prompt-refinery`; it never loads on its own. |
 
 ## Install
 
 Install everything in this package:
 
 ```bash
-npx skills add <your-github-username>/skills
+npx skills add amdeilami/skills
 ```
 
 List what's available without installing:
 
 ```bash
-npx skills add <your-github-username>/skills --list
+npx skills add amdeilami/skills --list
 ```
 
 Install a single skill:
 
 ```bash
-npx skills add <your-github-username>/skills/tree/main/prompt-refinery
+npx skills add amdeilami/skills/tree/main/prompt-refinery
 ```
 
 Add `-g` to install globally instead of into the current project.
+
+`prompt-refinery` uses Claude Code–only frontmatter (`disable-model-invocation`, `disallowed-tools`,
+`argument-hint`). Those install fine through `npx skills add`, but uploading to claude.ai or the
+Skills API requires stripping them — that path accepts only `name`, `description`, `license`,
+`compatibility`, `metadata`, and `allowed-tools`, and hard-errors on anything else.
+
+## Local development
+
+Claude Code discovers skills in `~/.claude/skills/` (personal) and `.claude/skills/` (project) — not
+from wherever this repo happens to be cloned. Symlink a skill instead of installing it, so edits here
+take effect without reinstalling:
+
+```bash
+ln -sfn "$PWD/prompt-refinery" ~/.claude/skills/prompt-refinery
+```
+
+Skills are discovered at startup, so restart Claude Code afterward.
 
 ## Discovery
 
