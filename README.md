@@ -8,6 +8,7 @@ load on demand. Each skill is a folder with a `SKILL.md`. New skills get added h
 | Skill | What it does |
 | --- | --- |
 | [`prompt-refinery`](./prompt-refinery/SKILL.md) | Turns a hastily typed, sloppy, or vague message into a clear prompt, then offers to run it. Fixes obvious typos in paths and names, but carries keys, hashes, and IDs through byte-for-byte, and asks before guessing on blocking ambiguities. Invoke it explicitly with `/prompt-refinery`; it never loads on its own. |
+| [`target-formatting`](./target-formatting/SKILL.md) | Formats copy-pasteable text, Markdown, or code for a specific destination (GitHub, Jira Cloud/Server, Slack, Discord, Google Docs, Notion, Teams, email, plain text, bash) while preserving original content (fixing only obvious typos) and handling copy-paste pitfalls like nested code fences and rich-text vs. raw paste. |
 
 ## Install
 
